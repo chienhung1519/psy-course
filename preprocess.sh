@@ -1,0 +1,1 @@
+python preprocess.py --data_dir ./data/raw/ --output_file ./data/processed/data.xlsx

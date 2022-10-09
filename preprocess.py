@@ -130,7 +130,7 @@ def process_time(df: pd.DataFrame) -> pd.DataFrame:
                 target_text = []
                 if not pd.isna(row.Time_YMD):
                     target_text.append(f"time: {row.Time_YMD}.")
-                if not pd.isna(row.Vague):
+                if not pd.isna(row.Vague) and row.Vague != "Fact":
                     target_text.append(f"vague: {row.Vague}.")
                 if not pd.isna(row.Age):
                     target_text.append(f"age: {row.Age}.")

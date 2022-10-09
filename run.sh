@@ -1,0 +1,1 @@
+python run.py --data_file ./data/processed/data.xlsx --output_dir ./outputs/

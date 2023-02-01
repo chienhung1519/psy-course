@@ -1,1 +1,1 @@
-python run.py --data_file ./data/processed/data.xlsx --output_dir ./outputs/
+python run.py --data_file ./data/processed/data_binary.xlsx --output_dir ./outputs/mt5-binary/

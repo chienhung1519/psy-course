@@ -26,7 +26,6 @@ def main():
         sheet_name = sheet[0]
         # Select sheet and set columns
         df = data.get(sheet_name)
-        df = df[COLUMNS]
         df.Admissindate = pd.to_datetime(df.Admissindate, format="%Y-%m-%d")
         # Process
         processed = pd.concat([processed, process_data(df)], ignore_index=False)

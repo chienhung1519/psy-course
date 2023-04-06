@@ -3,3 +3,8 @@
 *.csv
 *cached*
 *events*
+/outputs/
+/run/
+/wandb/
+/cache_dir/
+/data/

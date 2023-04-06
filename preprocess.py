@@ -3,28 +3,10 @@ from pathlib import Path
 import pandas as pd
 
 
-EXCLUDE_SHEETS = ["500篇ID說明", "500篇ID處理說明", "工作表1"]
-COLUMNS = [
-    "AID", "PID", "Admissindate", "Sentence",
-    "Duration", "Time_YMD", "Vague", "Age", "Ago_YMD", "TimeInfo",
-    "Remission", "Response", "緩解時間", "Acute", "急性住院時間", "DayCare", "慢性住院時間", "Episode", "Episode時間"
-]
-
-
 def parse_args() -> Namespace:
     parser = ArgumentParser()
-    parser.add_argument(
-        "--data_dir",
-        type=Path,
-        required=True,
-        help="Directory to the data.",
-    )
-    parser.add_argument(
-        "--output_file",
-        type=Path,
-        required=True,
-        help="Path to store the preprocessed data.",
-    )
+    parser.add_argument("--data_dir", type=Path, required=True)
+    parser.add_argument("--output_file", type=Path, required=True)
     args = parser.parse_args()
     return args
 
@@ -33,14 +15,14 @@ def main():
 
     args = parse_args()
 
+    # Load data
+    data = pd.read_excel(args.data_file)
     processed = pd.DataFrame()
     for file in args.data_dir.iterdir():
         # Load data
-        data = pd.read_excel(file, sheet_name=None, engine='openpyxl', dtype=str)
-        # Access sheet name
-        sheet = pd.ExcelFile(file, engine='openpyxl')
-        sheet = [s for s in sheet.sheet_names if s not in EXCLUDE_SHEETS]
-        assert len(sheet) == 1
+        data = pd.read_excel(file, sheet_name=None)
+        sheet = pd.ExcelFile(file)
+
         sheet_name = sheet[0]
         # Select sheet and set columns
         df = data.get(sheet_name)
